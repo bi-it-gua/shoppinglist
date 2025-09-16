@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-
+import Image from 'next/image'
 
 function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
@@ -68,14 +68,15 @@ export default function ShoppingList() {
           title="gekauft?"
         />
         {item.imageUrl ? (
-          <img
-            src={item.imageUrl}
-            alt=""
-            width={36}
-            height={36}
-            style={{objectFit:"cover",borderRadius:6}}
-            onError={(e)=> (e.currentTarget.style.display="none")}
-          />
+          <Image
+  src={item.imageUrl}
+  alt=""
+  width={36}
+  height={36}
+  style={{ objectFit: "cover", borderRadius: 6 }}
+  onError={(e) => (e.currentTarget.style.display = "none")}
+/>
+
         ) : (
           <div style={{width:36,height:36,background:"#eee",borderRadius:6,display:"grid",placeItems:"center",fontSize:12}}>IMG</div>
         )}
@@ -125,10 +126,10 @@ export default function ShoppingList() {
           ))}
         </ul>
       )}
+      <p style={{ marginTop: 12, fontSize: 12, color: "#666" }}>
+  Speichert unter <code>localStorage[&quot;shopping-items&quot;]</code>.
+</p>
 
-      <p style={{marginTop:12,fontSize:12,color:"#666"}}>
-        Speichert unter <code>localStorage["shopping-items"]</code>.
-      </p>
     </main>
   );
 }
